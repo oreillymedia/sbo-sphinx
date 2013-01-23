@@ -6,10 +6,16 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
-SPHINX_MASTER_DOC = 'README'
+SPHINX_EXTERNAL_FILES = ['README.rst']
+SPHINX_MASTER_DOC = 'index'
 SPHINX_OUTPUT_DIR = 'output'
 SPHINX_PROJECT_NAME = 'sbo-sphinx'
 SPHINX_PROJECT_VERSION = '1.0'
+SPHINX_PYTHON_EXCLUDE = [
+    'setup.py',
+    'test_settings.py',
+    've',
+]
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 

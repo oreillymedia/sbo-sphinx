@@ -5,7 +5,7 @@ Overview
 --------
 
 Safari Books Online technical documentation is now being written and collected
-in a form that can be processed by Sphinx (http://sphinx-doc.org/), a utility
+in a form that can be processed by `Sphinx <http://sphinx-doc.org/>`_, a utility
 for generating documentation in HTML, PDF, Epub, and other formats from text
 files using reST (reStructuredText) wiki markup.  In addition to writing docs
 directly, we can have Sphinx grab API documentation from all of our core
@@ -31,20 +31,35 @@ its input files and what to do with them:
 * ``ROOT_PATH`` - The root directory for the project being documented.  This
   needs to be set when documenting a python project, because this directory
   is added to sys.path in order to import code and retrieve docstrings.
-* ``SPHINX_MASTER_DOC`` - Path relative to ``ROOT_PATH`` of the root source
-  file for the documentation.  It must be a *.rst file somewhere under
-  ``ROOT_PATH``, and the setting must not include the extension.  It should
+* ``SPHINX_EXTERNAL_FILES`` - A list of files to be temporarily copied into the
+  input directory when generating the documentation.  For example, set it to
+  ``['README.rst']`` to include the that file from ``ROOT_PATH`` in the
+  documentation even though it's outside the input files directory (because
+  github wants it to be in the root directory).
+* ``SPHINX_INPUT_DIR`` - The name of the subdirectory within
+  ``ROOT_PATH`` which contains all of the reST files to be processed (and in
+  which API documentation reST files will be created, in the ``java``,
+  ``javascript``, and ``python`` subdirectories).  If not specified, defaults
+  to ``doc``.  This should not be your project's root directory itself, as that
+  is likely to include the output files and perhaps other reST files from
+  libraries in a virtualenv.
+* ``SPHINX_MASTER_DOC`` - Path relative to ``SPHINX_INPUT_DIR`` of the root source
+  file for the documentation.  It must be a \*.rst file somewhere under
+  ``SPHINX_INPUT_DIR``, and the setting must not include the extension.  It should
   usually contain a ``toctree`` directive which lists the top-level documents
   to be included (and those can in turn reference other pages, etc.)
 * ``SPHINX_OUTPUT_DIR`` - Path relative to ``ROOT_PATH`` of the directory in
   which to put the generated documentation.  If not specified, defaults to
-  ``_build.
+  ``_build``.
 * ``SPHINX_PROJECT_NAME`` - The name to be used for the generated set of
   documentation (in titles, headers, etc.)
-* ``SPHINX_SHORT_NAME`` - A short name for the project, suitable for use as
-  the start of filenames.  If not set, ``SPHINX_PROJECT_NAME`` is used.
 * ``SPHINX_PROJECT_VERSION`` - The version number of the project for which
   documentation is being generated.
+* ``SPHINX_PYTHON_EXCLUDE`` - A list of directories and files (with paths
+  relative to ``ROOT_PATH`` to be excluded when generating the Python API
+  documentation.
+* ``SPHINX_SHORT_NAME`` - A short name for the project, suitable for use as
+  the start of filenames.  If not set, ``SPHINX_PROJECT_NAME`` is used.
 
 Usage
 -----
@@ -62,22 +77,17 @@ Notes
   currently uses jsdoc-toolkit, which is no longer in active development.  If
   we decide that its successor JSDoc 3 has enough useful improvements, I can
   look into updating the library to use that instead.
-* In order to be able to include files from anywhere in the project (including
-  a README.rst in the root directory to make github happy), the ``conf.py``
-  configuration file and ``Makefile`` are copied into the root directory for
-  the duration of the Sphinx run; make sure you don't have actual source files
-  in those location.
 
 References
 ----------
 
-* `Sphinx <http://sphinx-doc.org/>`
-* `reStructuredText syntax overview <http://docutils.sourceforge.net/docs/user/rst/quickstart.html>`
-* `JSDoc <http://code.google.com/p/jsdoc-toolkit/>`
-* `JSDoc 3 <http://usejsdoc.org/index.html>`
-* `JsDoc Toolkit RST-Template <https://jsdoc-toolkit-rst-template.readthedocs.org/en/latest/index.html>`
-* `javasphinx <https://github.com/bronto/javasphinx>`
-* `sphinx-contrib <https://bitbucket.org/birkenfeld/sphinx-contrib>` - Lots of
+* `Sphinx <http://sphinx-doc.org/>`_
+* `reStructuredText syntax overview <http://docutils.sourceforge.net/docs/user/rst/quickstart.html>`_
+* `JSDoc <http://code.google.com/p/jsdoc-toolkit/>`_
+* `JSDoc 3 <http://usejsdoc.org/index.html>`_
+* `JsDoc Toolkit RST-Template <https://jsdoc-toolkit-rst-template.readthedocs.org/en/latest/index.html>`_
+* `javasphinx <https://github.com/bronto/javasphinx>`_
+* `sphinx-contrib <https://bitbucket.org/birkenfeld/sphinx-contrib>`_ - Lots of
   cool stuff here; support for CoffeeScript, Doxygen, Erlang, Excel, Google
   charts and maps, RESTful HTTP APIs, Ruby, etc.
-* `sphinxcontrib.httpdomain <http://packages.python.org/sphinxcontrib-httpdomain/>` - Documenting RESTful HTTP APIs
+* `sphinxcontrib.httpdomain <http://packages.python.org/sphinxcontrib-httpdomain/>`_ - Documenting RESTful HTTP APIs
