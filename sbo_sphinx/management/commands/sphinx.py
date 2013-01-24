@@ -33,13 +33,44 @@ class Command(BaseCommand):
     temp_dirs = []
     temp_files = []
 
+    def generate_javascript_docs(self):
+        """
+        Use jsdoc-toolkit and jsdoc-toolkit-rst-template to generate JavaScript
+        API documentation for the project.  Depends on having JSDoc formatted
+        comments in the source code, without that this won't do much.  If the
+        project contains no JavaScript or the JS files haven't been given JSDoc
+        comments yet, just don't set SPHINX_JS_ROOT and this step will be
+        skipped.
+        """
+        if not hasattr(settings, 'SPHINX_JS_ROOT'):
+            return
+        self.remove('javascript')
+        jsdoc_toolkit_dir = os.path.join(SOURCE_PATH, 'jsdoc-toolkit')
+        jsdoc_rst_dir = os.path.join(SOURCE_PATH, 'jsdoc-toolkit-rst-template')
+        js_root = os.path.join(settings.ROOT_PATH, settings.SPHINX_JS_ROOT)
+        build_xml_path = os.path.join(jsdoc_rst_dir, 'build.xml')
+        command = ['ant', '-f', build_xml_path,
+                   '-Djsdoc-toolkit.dir=%s' % jsdoc_toolkit_dir,
+                   '-Djs.src.dir=%s' % js_root,
+                   '-Djs.rst.dir=%s' % os.path.join(INPUT_DIR, 'javascript')]
+        process = Popen(command, cwd=settings.ROOT_PATH)
+        process.wait()
+        # Convert the absolute paths in the file listing to relative ones
+        if js_root[-1] != os.path.sep:
+            js_root += os.path.sep
+        path = os.path.join(INPUT_DIR, 'javascript', 'files.rst')
+        with open(path, 'r') as f:
+            content = f.read()
+        content = content.replace(js_root, '')
+        with open(path, 'w') as f:
+            f.write(content)
+
     def generate_python_docs(self):
         """
         Run sphinx-apidoc to generate Python API documentation for the project.
         """
+        self.remove('python')
         path = os.path.join(INPUT_DIR, 'python')
-        if os.path.exists(path):
-            rmtree(path)
         command = ['sphinx-apidoc', '-f', '-o', path,
                    '-H', settings.SPHINX_PROJECT_NAME, '..']
         # Exclude the temporary conf.py file
@@ -82,16 +113,26 @@ class Command(BaseCommand):
                 copyfile(src, dst)
                 os.remove(src)
         # This may have been generated during the run, get rid of it too
-        path = os.path.join(INPUT_DIR, 'conf.pyc')
-        if os.path.exists(path):
-            os.remove(path)
+        self.remove('conf.pyc')
         # Clean up the generated API reST files so we don't check them in
-        path = os.path.join(INPUT_DIR, 'python')
-        if os.path.exists(path):
-            rmtree(path)
+        self.remove('javascriptAnd')
+        self.remove('python')
         self.temp_dirs.reverse()
         for directory in self.temp_dirs:
             os.rmdir(directory)
+
+    def remove(self, path):
+        """
+        Remove the directory or file at the specified path (relative to
+        SPHINX_INPUT_DIR) if it exists.  Used when cleaning up after a build.
+        """
+        path = os.path.join(INPUT_DIR, path)
+        if not os.path.exists(path):
+            return
+        if os.path.isdir(path):
+            rmtree(path)
+        else:
+            os.remove(path)
 
     def handle(self, *args, **options):
         """
@@ -116,8 +157,9 @@ class Command(BaseCommand):
                            '_static')
             if hasattr(settings, 'SPHINX_EXTERNAL_FILES'):
                 for path in settings.SPHINX_EXTERNAL_FILES:
-                    self.copy_file(os.path.join('..', path))
+                    self.copy_file(os.path.join(settings.ROOT_PATH, path))
             self.generate_python_docs()
+            self.generate_javascript_docs()
             process = Popen(['make', args[0]], cwd=INPUT_DIR, env=env)
             process.wait()
         self.remove_temp_files()

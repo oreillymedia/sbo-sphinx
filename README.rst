@@ -1,5 +1,5 @@
-sbo-sphinx
-==========
+sbo-sphinx README
+=================
 
 Overview
 --------
@@ -22,6 +22,16 @@ Web service APIs can be documented using httpdomain from sphinx-contrib.
 Installation
 ------------
 ``pip install -e git://github.com/safarijv/sbo-sphinx.git#egg=sbo-sphinx``
+
+Add ``sbo_sphinx`` to Django's INSTALLED_APPS setting.  If you don't want this
+to be part of the project's regular dependencies, it can be done
+conditionally::
+
+    try:
+        import sbo_sphinx
+        INSTALLED_APPS += ('sbo_sphinx',)
+    except:
+        pass
 
 Settings
 --------
@@ -48,6 +58,8 @@ its input files and what to do with them:
   ``SPHINX_INPUT_DIR``, and the setting must not include the extension.  It should
   usually contain a ``toctree`` directive which lists the top-level documents
   to be included (and those can in turn reference other pages, etc.)
+* ``SPHINX_JS_ROOT`` - The path relative to ``ROOT_PATH`` under which to
+  look for JavaScript files.  If not set, it is assumed that there are none.
 * ``SPHINX_OUTPUT_DIR`` - Path relative to ``ROOT_PATH`` of the directory in
   which to put the generated documentation.  If not specified, defaults to
   ``_build``.
@@ -73,6 +85,11 @@ To generate the documentation in a particular target format::
 
 Notes
 -----
+* The table of contents page for Python modules is generated at "python/index"
+  within SPHINX_INPUT_DIR.  The equivalent file for JavaScript (if generated)
+  is at "javascript/index", and there is also a list of processed JS files at
+  "javascript/files".  These should be added to a toctree directive in the
+  documentation.
 * The RST-Template library for creating reST files from JSDoc comments
   currently uses jsdoc-toolkit, which is no longer in active development.  If
   we decide that its successor JSDoc 3 has enough useful improvements, I can

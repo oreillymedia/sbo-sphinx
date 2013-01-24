@@ -6,10 +6,12 @@ Technical Documentation for sbo-sphinx
 Contents:
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
 
    README
-   Python <python/modules>
+   Python API <python/modules>
+   JavaScript API for jsdoc-toolkit <javascript/index>
+   JavaScript File Listing for jsdoc-toolkit <javascript/files>
 
 
 Indices and tables

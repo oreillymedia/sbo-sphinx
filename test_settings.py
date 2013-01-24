@@ -7,6 +7,8 @@ TEMPLATE_DEBUG = DEBUG
 
 ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
 SPHINX_EXTERNAL_FILES = ['README.rst']
+# Not really this project's JS code, but works as a good example for testing
+SPHINX_JS_ROOT = os.path.join('sbo_sphinx', 'jsdoc-toolkit', 'app')
 SPHINX_MASTER_DOC = 'index'
 SPHINX_OUTPUT_DIR = 'output'
 SPHINX_PROJECT_NAME = 'sbo-sphinx'
