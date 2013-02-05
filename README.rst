@@ -21,7 +21,7 @@ Web service APIs can be documented using httpdomain from sphinx-contrib.
 
 Installation
 ------------
-``pip install -e git://github.com/safarijv/sbo-sphinx.git#egg=sbo-sphinx``
+``pip install -e git+https://github.com/safarijv/sbo-sphinx.git#egg=sbo-sphinx``
 
 Add ``sbo_sphinx`` to Django's INSTALLED_APPS setting.  If you don't want this
 to be part of the project's regular dependencies, it can be done
