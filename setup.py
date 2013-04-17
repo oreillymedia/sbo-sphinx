@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.0'
+version = '1.1'
 
 setup(
     name="sbo-sphinx",
@@ -39,6 +39,8 @@ setup(
             'jsdoc-toolkit-rst-template/*.xml',
             'jsdoc-toolkit-rst-template/templates/rst/*.tmpl',
             'jsdoc-toolkit-rst-template/templates/rst/*.js',
+            'themes/rtd/theme.conf',
+            'themes/rtd/static/rtd.css_t',
         ],
     },
     zip_safe=False,
