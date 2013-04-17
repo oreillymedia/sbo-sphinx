@@ -115,7 +115,7 @@ class Command(BaseCommand):
         # This may have been generated during the run, get rid of it too
         self.remove('conf.pyc')
         # Clean up the generated API reST files so we don't check them in
-        self.remove('javascriptAnd')
+        self.remove('javascript')
         self.remove('python')
         self.temp_dirs.reverse()
         for directory in self.temp_dirs:
@@ -155,6 +155,10 @@ class Command(BaseCommand):
             self.copy_file(os.path.join('_static', 'favicon.ico'), '_static')
             self.copy_file(os.path.join('_static', 'safari_logo.png'),
                            '_static')
+            self.copy_file(os.path.join('themes', 'rtd', 'theme.conf'),
+                           os.path.join('themes', 'rtd'))
+            self.copy_file(os.path.join('themes', 'rtd', 'static', 'rtd.css_t'),
+                           os.path.join('themes', 'rtd', 'static'))
             if hasattr(settings, 'SPHINX_EXTERNAL_FILES'):
                 for path in settings.SPHINX_EXTERNAL_FILES:
                     self.copy_file(os.path.join(settings.ROOT_PATH, path))
