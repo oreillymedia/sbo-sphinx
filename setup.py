@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.1'
+version = '1.2'
 
 setup(
     name="sbo-sphinx",
@@ -50,7 +50,7 @@ setup(
     install_requires=[
         'Django>=1.4.3',
         'django-nose',
-        'Sphinx>=1.1.4',
+        'Sphinx==1.1.4',
         'javasphinx',
     ],
 )
