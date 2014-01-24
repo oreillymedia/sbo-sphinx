@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.2'
+version = '1.3'
 
 setup(
     name="sbo-sphinx",
@@ -44,13 +44,10 @@ setup(
         ],
     },
     zip_safe=False,
-    dependency_links=[
-        'https://bitbucket.org/jmbowman/sphinx/get/apidoc-exclude-files.tar.gz#egg=Sphinx-1.1.4',
-    ],
     install_requires=[
-        'Django>=1.4.3',
-        'django-nose',
-        'Sphinx==1.1.4',
-        'javasphinx',
+        'Django>=1.6.1,<1.7',
+        'django-nose>=1.2',
+        'Sphinx==1.2.1',
+        'javasphinx>=0.9.9',
     ],
 )

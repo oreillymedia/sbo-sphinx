@@ -305,5 +305,10 @@ epub_copyright = u'2013, Safari Books Online'
 #epub_tocdup = True
 
 
-# Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'http://docs.python.org/': None}
+# Example configuration for intersphinx
+intersphinx_mapping = {
+    'python': ('http://docs.python.org/2/', None),
+    'django': ('http://docs.djangoproject.com/en/1.6/', None),
+    'nose': ('http://nose.readthedocs.org/en/latest/', None),
+    'sphinx': ('http://sphinx-doc.org/', None),
+}
