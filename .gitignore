@@ -11,6 +11,9 @@ log
 .*.log.*
 build
 dist
+docs/javascript
+docs/python
+_build
 media
 egg-cache
 storage

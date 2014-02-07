@@ -21,78 +21,75 @@ Web service APIs can be documented using httpdomain from sphinx-contrib.
 
 Installation
 ------------
-``pip install -e git+https://github.com/safarijv/sbo-sphinx.git#egg=sbo-sphinx``
-
-Add ``sbo_sphinx`` to Django's INSTALLED_APPS setting.  If you don't want this
-to be part of the project's regular dependencies, it can be done
-conditionally::
-
-    try:
-        import sbo_sphinx
-        INSTALLED_APPS += ('sbo_sphinx',)
-    except:
-        pass
+``pip install sbo-sphinx``
 
 Settings
 --------
-sbo-sphinx has uses a few Django settings to configure where to look for
-its input files and what to do with them:
+sbo-sphinx uses the standard Sphinx :ref:`conf.py file <sphinx:build-config>`,
+but offloads the vast majority of the configuration to an
+:py:mod:`sbo_sphinx.conf` module which should be appropriate for most SBO
+projects.  Hence a minimal ``docs/conf.py`` file can be as simple as::
 
-* ``ROOT_PATH`` - The root directory for the project being documented.  This
-  needs to be set when documenting a python project, because this directory
-  is added to sys.path in order to import code and retrieve docstrings.
-* ``SPHINX_EXTERNAL_FILES`` - A list of files to be temporarily copied into the
-  input directory when generating the documentation.  For example, set it to
-  ``['README.rst']`` to include the that file from ``ROOT_PATH`` in the
-  documentation even though it's outside the input files directory (because
-  github wants it to be in the root directory).
-* ``SPHINX_INPUT_DIR`` - The name of the subdirectory within
-  ``ROOT_PATH`` which contains all of the reST files to be processed (and in
-  which API documentation reST files will be created, in the ``java``,
-  ``javascript``, and ``python`` subdirectories).  If not specified, defaults
-  to ``doc``.  This should not be your project's root directory itself, as that
-  is likely to include the output files and perhaps other reST files from
-  libraries in a virtualenv.
-* ``SPHINX_MASTER_DOC`` - Path relative to ``SPHINX_INPUT_DIR`` of the root source
-  file for the documentation.  It must be a \*.rst file somewhere under
-  ``SPHINX_INPUT_DIR``, and the setting must not include the extension.  It should
-  usually contain a ``toctree`` directive which lists the top-level documents
-  to be included (and those can in turn reference other pages, etc.)
-* ``SPHINX_JS_ROOT`` - The path relative to ``ROOT_PATH`` under which to
-  look for JavaScript files.  If not set, it is assumed that there are none.
-* ``SPHINX_OUTPUT_DIR`` - Path relative to ``ROOT_PATH`` of the directory in
-  which to put the generated documentation.  If not specified, defaults to
-  ``_build``.
-* ``SPHINX_PROJECT_NAME`` - The name to be used for the generated set of
-  documentation (in titles, headers, etc.)
-* ``SPHINX_PROJECT_VERSION`` - The version number of the project for which
-  documentation is being generated.
-* ``SPHINX_PYTHON_EXCLUDE`` - A list of directories and files (with paths
-  relative to ``ROOT_PATH`` to be excluded when generating the Python API
-  documentation.
-* ``SPHINX_SHORT_NAME`` - A short name for the project, suitable for use as
-  the start of filenames.  If not set, ``SPHINX_PROJECT_NAME`` is used.
+    from sbo_sphinx.conf import *
+
+    project = 'my_project_name'
+
+There should also be a ``docs/index.rst`` file to serve as the documentation
+home page; see the one in this project for an example.
+
+There are additional settings for the extensions which auto-generate Python
+and JavaScript API documentation. See :py:mod:`sbo_sphinx.apidoc` and
+:py:mod:`sbo_sphinx.jsdoc` for details.
 
 Usage
 -----
-To see the list of available commands::
+Use the standard :ref:`sphinx-build <sphinx:invocation>` syntax.  For the
+usual case of wanting to generate the documentation in HTML format:
 
-  ./manage.py sphinx
+.. code-block:: sh
 
-To generate the documentation in a particular target format::
+    sphinx-build -b html . _build
 
-  ./manage.py sphinx <target>
+External Files
+--------------
+reStructuredText not inside the ``docs`` directory hierarchy can't be directly
+included in a table of contents.  To include a README.rst file from the
+repository's root directory in the generated documentation, create a
+placeholder inside the ``docs`` directory which uses an include directive to
+pull in its content:
+
+    ``.. include:: ../README.rst``
+
+For an example, see ``docs/readme.rst`` in this project.
+
+Markdown
+--------
+Sphinx currently has no real support for Markdown-style wiki markup.  If a
+project has a README.md which you want to include in the documentation, there
+are a few options:
+
+* Convert it to README.rst instead, changing the markup accordingly.
+  `pandoc <http://johnmacfarlane.net/pandoc/>`_ may do a reasonably good job
+  of automating this conversion.
+* Add a reStructuredText-formatted copy of the file to the ``docs`` directory
+  and include that in the documentation instead.  This does run the risk of
+  the copy getting out of sync with the original, however.
+* Implement a Sphinx extension which uses pandoc to automatically convert and
+  copy the Markdown files specified in a configured list.  The drawback with
+  this approach is that it requires pandoc to be installed on each system on
+  which the documentation will be generated.
 
 Notes
 -----
-* The table of contents page for Python modules is generated at "python/index"
-  within SPHINX_INPUT_DIR.  The equivalent file for JavaScript (if generated)
-  is at "javascript/index", and there is also a list of processed JS files at
-  "javascript/files".  These should be added to a toctree directive in the
-  documentation.
+* The table of contents page for Python modules is generated at
+  ``docs/python/index``.  The equivalent file for JavaScript (if generated)
+  is at ``docs/javascript/index``, and there is also a list of processed JS
+  files at ``docs/javascript/files``.  These should be added to a toctree
+  directive in the documentation.  Again, see this projects ``docs/index.rst``
+  for an example.
 * The RST-Template library for creating reST files from JSDoc comments
   currently uses jsdoc-toolkit, which is no longer in active development.  If
-  we decide that its successor JSDoc 3 has enough useful improvements, I can
+  we decide that its successor JSDoc 3 has enough useful improvements, we can
   look into updating the library to use that instead.
 
 References

@@ -8,7 +8,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   README
+   readme
    Python API <python/modules>
    JavaScript API for jsdoc-toolkit <javascript/index>
    JavaScript File Listing for jsdoc-toolkit <javascript/files>

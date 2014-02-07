@@ -1,9 +1,7 @@
 include README.rst
-include sbo_sphinx/Makefile
 include sbo_sphinx/_static/favicon.ico
 include sbo_sphinx/_static/safari_logo.png
 recursive-include sbo_sphinx/jsdoc-toolkit *
-recursive-include sbo_sphinx/themes *
 include sbo_sphinx/jsdoc-toolkit-rst-template/build.xml
 include sbo_sphinx/jsdoc-toolkit-rst-template/*.properties
 recursive-include sbo_sphinx/jsdoc-toolkit-rst-template/templates *.js

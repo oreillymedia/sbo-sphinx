@@ -18,6 +18,7 @@
     <attribute name="outdir" default="${doc}/api"/>
     <attribute name="srcdir" default="${jsdoc-toolkit.dir}/app/"/>
     <attribute name="rlevel" default="5"/>
+    <attribute name="exclude" default=""/>
 
     <sequential>
       <echo>Generating api documentation from @{srcdir} (template dir: @{tmpldir})</echo>
@@ -36,6 +37,7 @@
         <arg value="--template=@{tmpldir}"/>
         <arg value="--directory=@{outdir}"/>
         <arg value="--verbose"/>
+        <arg line="@{exclude}"/>
         <arg value="@{srcdir}"/>
       </java>
       <echo>generation finished. output dir: @{outdir}</echo>
@@ -62,7 +64,7 @@
   </target>
 
   <target name="build" depends="init" description="Generate RST files from JS sources">
-    <jsdoc tmpldir="${tmpl.dir}" srcdir="${js.src.dir}" outdir="${js.rst.dir}"/>
+    <jsdoc tmpldir="${tmpl.dir}" srcdir="${js.src.dir}" outdir="${js.rst.dir}" exclude="${js.exclude}"/>
   </target>
 
   <target name="test" description="Test template with jsdoc-tookit itself">

@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.3'
+version = '2.0'
 
 setup(
     name="sbo-sphinx",
@@ -11,7 +11,6 @@ setup(
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     package_data={
         'sbo_sphinx': [
-            'Makefile',
             '_static/favicon.ico',
             '_static/safari_logo.png',
             'jsdoc-toolkit/*.jar',
@@ -39,15 +38,12 @@ setup(
             'jsdoc-toolkit-rst-template/*.xml',
             'jsdoc-toolkit-rst-template/templates/rst/*.tmpl',
             'jsdoc-toolkit-rst-template/templates/rst/*.js',
-            'themes/rtd/theme.conf',
-            'themes/rtd/static/rtd.css_t',
         ],
     },
     zip_safe=False,
     install_requires=[
-        'Django>=1.6.1,<1.7',
-        'django-nose>=1.2',
         'Sphinx==1.2.1',
-        'javasphinx>=0.9.9',
+        'javasphinx>=0.9.10',
+        'sphinx_rtd_theme==0.1.5',
     ],
 )
