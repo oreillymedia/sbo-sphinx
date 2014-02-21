@@ -1,4 +1,8 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Sphinx configuration for documentation
+"""
 
 from sbo_sphinx.conf import *
 

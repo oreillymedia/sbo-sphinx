@@ -1,13 +1,15 @@
 from setuptools import setup, find_packages
 
-version = '2.0'
+from sbo_sphinx import __version__
+
+version = '.'.join(str(n) for n in __version__)
 
 setup(
     name="sbo-sphinx",
     version=version,
     author="Jeremy Bowman",
     author_email="jbowman@safaribooksonline.com",
-    description="Sphinx configuration and libraries for SBO documentation",
+    description="Sphinx configuration and libraries for Safari Books Online documentation",
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     package_data={
         'sbo_sphinx': [
@@ -42,8 +44,7 @@ setup(
     },
     zip_safe=False,
     install_requires=[
-        'Sphinx==1.2.1',
-        'javasphinx>=0.9.10',
-        'sphinx_rtd_theme==0.1.5',
+        'Sphinx>=1.2.1',
+        'sphinx_rtd_theme>=0.1.5',
     ],
 )

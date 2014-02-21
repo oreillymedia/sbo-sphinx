@@ -14,8 +14,6 @@ programming languages:
 * Python docstrings are collected using the sphinx-apidoc command.
 * JSDoc-formatted comments in JavaScript are collected using the
   JsDoc Toolkit RST-Template library, which in turn uses jsdoc-toolkit.
-* Javadoc comments in Java code are converted into reST files for Sphinx to use
-  by the javasphinx extension.
 
 Web service APIs can be documented using httpdomain from sphinx-contrib.
 
@@ -100,7 +98,6 @@ References
 * `JSDoc <http://code.google.com/p/jsdoc-toolkit/>`_
 * `JSDoc 3 <http://usejsdoc.org/index.html>`_
 * `JsDoc Toolkit RST-Template <https://jsdoc-toolkit-rst-template.readthedocs.org/en/latest/index.html>`_
-* `javasphinx <https://github.com/bronto/javasphinx>`_
 * `sphinx-contrib <https://bitbucket.org/birkenfeld/sphinx-contrib>`_ - Lots of
   cool stuff here; support for CoffeeScript, Doxygen, Erlang, Excel, Google
   charts and maps, RESTful HTTP APIs, Ruby, etc.
