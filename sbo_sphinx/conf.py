@@ -26,9 +26,9 @@ STATIC_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), '_static'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['javasphinx', 'sphinx.ext.autodoc', 'sphinx.ext.intersphinx',
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx',
               'sphinx.ext.todo', 'sphinx.ext.coverage', 'sphinx.ext.viewcode',
-              'sbo_sphinx.apidoc', 'sbo_sphinx.jsdoc']
+              'sbo_sphinx.apidoc']
 
 autodoc_default_flags = ['members', 'undoc-members', 'show-inheritance']
 
@@ -293,10 +293,13 @@ def update_configuration(app):
     sys.path.insert(0, os.path.join(config_dir, '..'))
 
     config.html_theme_path.append(os.path.relpath(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'themes'), config_dir))
-    config.html_logo = os.path.relpath(os.path.join(STATIC_PATH, 'safari_logo.png'), config_dir)
+    # Waiting for 2 bugs to be fixed for proper logo support in HTML output:
+    # https://github.com/snide/sphinx_rtd_theme/pull/69 - Not actually shown in the theme yet
+    # https://bitbucket.org/birkenfeld/sphinx/issue/1352/copying-html_logo-file-over-improperly - Just output clutter, should be fixed in Sphinx 1.2.2
+    #config.html_logo = os.path.relpath(os.path.join(STATIC_PATH, 'safari_logo.png'), config_dir)
     config.html_favicon = os.path.relpath(os.path.join(STATIC_PATH, 'favicon.ico'), config_dir)
     config.html_static_path.append(os.path.relpath(STATIC_PATH, config_dir))
-    config.latex_logo = config.html_logo
+    config.latex_logo = os.path.relpath(os.path.join(STATIC_PATH, 'safari_logo.png'), config_dir)
 
     config.latex_documents.append(
         (master_doc,

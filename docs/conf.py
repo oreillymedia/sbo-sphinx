@@ -14,5 +14,6 @@ apidoc_exclude = [
     'test_settings.py',
     've',
 ]
+extensions.append('sbo_sphinx.jsdoc')
 jsdoc_source_root = os.path.join('..', 'sbo_sphinx', 'jsdoc-toolkit', 'app')
 jsdoc_exclude = [os.path.join('app', 'test')]

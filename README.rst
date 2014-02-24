@@ -8,7 +8,7 @@ Safari Books Online technical documentation is now being written and collected
 in a form that can be processed by `Sphinx <http://sphinx-doc.org/>`_, a utility
 for generating documentation in HTML, PDF, Epub, and other formats from text
 files using reST (reStructuredText) wiki markup.  In addition to writing docs
-directly, we can have Sphinx grab API documentation from all of our core
+directly, we can have Sphinx grab API documentation from our core
 programming languages:
 
 * Python docstrings are collected using the sphinx-apidoc command.
@@ -76,6 +76,27 @@ are a few options:
   copy the Markdown files specified in a configured list.  The drawback with
   this approach is that it requires pandoc to be installed on each system on
   which the documentation will be generated.
+
+Read the Docs
+-------------
+sbo-sphinx was written to be mostly compatible with the
+`Read the Docs <https://readthedocs.org/>`_ service, but there are still a few
+gotchas:
+
+* The public Read the Docs site is still using Sphinx 1.2, which has a
+  `bug <https://bitbucket.org/birkenfeld/sphinx/issue/979/correct-use-of-exclude_paths-with-sphinx>`_
+  that prevents the :py:mod:`sbo_sphinx.apidoc` extension from working
+  correctly.  A `local Read the Docs installation <readthedocs>`_ which
+  upgrades to Sphinx 1.2.1 works fine, though.
+* The Read the Docs Sphinx theme `currently doesn't display <https://github.com/snide/sphinx_rtd_theme/pull/69>`_
+  an HTML logo specified in the configuration.  Additionally, setting an HTML
+  logo with Sphinx 1.2.1 generates a
+  `spurious warning <https://bitbucket.org/birkenfeld/sphinx/issue/1352/copying-html_logo-file-over-improperly>`_
+  in the build output.  Until at least the first bug is fixed, a logo can
+  really only be usefully specified for the LaTeX/PDF output.
+* Keep in mind that private source code repositories cannot be used on the
+  public Read the Docs service (but can be on a suitably configured private
+  installation).
 
 Notes
 -----
