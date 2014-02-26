@@ -9,7 +9,20 @@ setup(
     version=version,
     author="Jeremy Bowman",
     author_email="jbowman@safaribooksonline.com",
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: BSD License',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Topic :: Documentation',
+        'Topic :: Software Development :: Documentation',
+    ],
     description="Sphinx configuration and libraries for Safari Books Online documentation",
+    url='http://github.com/safarijv/sbo-sphinx',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     package_data={
         'sbo_sphinx': [
