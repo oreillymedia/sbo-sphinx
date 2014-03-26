@@ -17,7 +17,7 @@ virtualenv==1.11.4
 # Exact versions of the base dependencies
 
 pip==1.5.4
-Sphinx==1.2.1
+Sphinx==1.2.2
 sphinx_rtd_theme==0.1.5
 
 # Direct dependencies for running tests

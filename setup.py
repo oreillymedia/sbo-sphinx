@@ -65,7 +65,7 @@ setup(
             'jsdoc-toolkit-rst-template/templates/rst/*.js',
         ],
     },
-    scripts=['validate_readme'],
+    scripts=['validate_readme.py'],
     zip_safe=False,
     install_requires=install_requires,
 )

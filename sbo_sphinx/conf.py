@@ -293,13 +293,15 @@ def update_configuration(app):
     sys.path.insert(0, os.path.join(config_dir, '..'))
 
     config.html_theme_path.append(os.path.relpath(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'themes'), config_dir))
-    # Waiting for 2 bugs to be fixed for proper logo support in HTML output:
-    # https://github.com/snide/sphinx_rtd_theme/pull/69 - Not actually shown in the theme yet
-    # https://bitbucket.org/birkenfeld/sphinx/issue/1352/copying-html_logo-file-over-improperly - Just output clutter, should be fixed in Sphinx 1.2.2
-    #config.html_logo = os.path.relpath(os.path.join(STATIC_PATH, 'safari_logo.png'), config_dir)
-    config.html_favicon = os.path.relpath(os.path.join(STATIC_PATH, 'favicon.ico'), config_dir)
+    # Logo isn't actually shown in HTML output yet:
+    # https://github.com/snide/sphinx_rtd_theme/pull/69
+    if not config.html_logo:
+        config.html_logo = os.path.relpath(os.path.join(STATIC_PATH, 'safari_logo.png'), config_dir)
+    if not config.html_favicon:
+        config.html_favicon = os.path.relpath(os.path.join(STATIC_PATH, 'favicon.ico'), config_dir)
     config.html_static_path.append(os.path.relpath(STATIC_PATH, config_dir))
-    config.latex_logo = os.path.relpath(os.path.join(STATIC_PATH, 'safari_logo.png'), config_dir)
+    if not config.latex_logo:
+        config.latex_logo = os.path.relpath(os.path.join(STATIC_PATH, 'safari_logo.png'), config_dir)
 
     config.latex_documents.append(
         (master_doc,
