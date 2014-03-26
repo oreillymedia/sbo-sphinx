@@ -1,4 +1,14 @@
+import os
+from pip.index import PackageFinder
+from pip.req import parse_requirements
 from setuptools import setup, find_packages
+
+root_dir = os.path.abspath(os.path.dirname(__file__))
+requirements_path = os.path.join(root_dir, 'requirements', 'base.txt')
+
+finder = PackageFinder([], [])
+requirements = parse_requirements(requirements_path, finder)
+install_requires = [str(r.req) for r in requirements]
 
 from sbo_sphinx import __version__
 
@@ -10,7 +20,7 @@ setup(
     author="Jeremy Bowman",
     author_email="jbowman@safaribooksonline.com",
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
@@ -55,9 +65,7 @@ setup(
             'jsdoc-toolkit-rst-template/templates/rst/*.js',
         ],
     },
+    scripts=['validate_readme.py'],
     zip_safe=False,
-    install_requires=[
-        'Sphinx>=1.2.1',
-        'sphinx_rtd_theme>=0.1.5',
-    ],
+    install_requires=install_requires,
 )

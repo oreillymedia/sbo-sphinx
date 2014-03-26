@@ -9,7 +9,7 @@ from sbo_sphinx.conf import *
 project = 'sbo-sphinx'
 apidoc_exclude = [
     os.path.join('docs', 'conf.py'),
-    os.path.join('sbo_sphinx', 'management'),
+    os.path.join('sbo_sphinx', 'tests'),
     'setup.py',
     'test_settings.py',
     've',
