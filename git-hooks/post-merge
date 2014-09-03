@@ -36,9 +36,7 @@ if virtual_env:
     print 'Deleting .pyc files in virtualenv'
     os.system("find %s -name '*pyc' -delete" % virtual_env)
 
-    requirements_files = set(glob.glob('requirements/*.txt'))
-    requirements_files.add('setup.py')
-    if changed_files.intersection(requirements_files):
-        os.system("pip install pip==1.5.4")  # match requirements/tests.txt
-        os.system("pip install --upgrade --editable ./")
-        os.system("pip install --requirement requirements/tests.txt")
+    os.system("pip install pip==1.5.4")  # match requirements/base.txt
+    os.system("pip install --requirement requirements/base.txt")
+    os.system("pip install --editable ./")
+    os.system("pip install --requirement requirements/tests.txt")

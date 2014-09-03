@@ -8,11 +8,9 @@ requirements_path = os.path.join(root_dir, 'requirements', 'base.txt')
 
 finder = PackageFinder([], [])
 requirements = parse_requirements(requirements_path, finder)
-install_requires = [str(r.req) for r in requirements]
+install_requires = [r.name for r in requirements]
 
-from sbo_sphinx import __version__
-
-version = '.'.join(str(n) for n in __version__)
+version = '2.0.2'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 setup(
     name="sbo-sphinx",

@@ -9,13 +9,7 @@ service for building and hosting Sphinx-based documentation.  The public web
 site only supports public code repositories, but a local installation can be
 set up to also pull from private repositories.  The site has fairly good
 `instructions <http://read-the-docs.readthedocs.org/en/latest/install.html>`_
-on how to set up a local installation, but here are a few recommended changes
-and points to note:
-
-#. Before installing its dependencies, edit ``pip_requirements.txt`` to bump
-   Sphinx from 1.2 to 1.2.1. This fixes a bug where sphinx-apidoc ignores
-   directories to exclude (this can actually cause the build to break as it
-   loads files which muck up the options parser for the script itself).
+on how to set up a local installation, but here are a couple of points to note:
 
 #. Create ``settings/local_settings.py`` - see
    http://read-the-docs.readthedocs.org/en/latest/settings.html for some
@@ -26,6 +20,7 @@ and points to note:
        ADMINS = (
            ('Your Name', 'your_username@safaribooksonline.com'),
        )
+       ALLOW_PRIVATE_REPOS = True
 
 #. If you set the slumber username and password in ``local_settings.py``, you
    shouldn't need to run the ``./manage.py loaddata test_data`` command; other
@@ -40,7 +35,6 @@ Hence the overall sequence ends up looking something like this:
     cd readthedocs.org
     virtualenv --python=python2.7 --prompt="(readthedocs)" ve
     . ve/bin/activate
-    # Edit pip_requirements.txt to update Sphinx version to 1.2.1
     pip install -r pip_requirements.txt
     cd readthedocs
     # Create settings/local_settings.py
@@ -66,13 +60,18 @@ Project Creation
 To create a new project, go to the Dashboard (at http://localhost:8000/dashboard/
 by default) and click on :guilabel:`Import`.  Minimally you should set the
 name, repo, and description.  The description can usually just be copied from
-the GitHub repository.  The repo entry should be formatted like
-``github.com:safarijv/repo_name.git``.
+the GitHub repository.  For a private GitHub repository, the repo entry should
+be formatted like ``https://<access_token>:x-oauth-basic@github.com/safarijv/<repo_name>.git``.
+See `here <https://help.github.com/articles/creating-an-access-token-for-command-line-use>`_
+for documentation on setting up an access token for a GitHub repository (you'll
+need permission to modify settings on the repo).
 
 When you click :guilabel:`Create`, it immediately attempts to build the
 documentation...and this usually fails.  This is because you now need to click
 the :guilabel:`admin` button for the project, go to :guilabel:`Advanced Settings`,
-and enable :guilabel:`Use virtualenv`.  Click :guilabel:`Submit` to save your
+and enable :guilabel:`Use virtualenv`.  Usually you'll also want to set the
+:guilabel:`Requirements file` appropriately (usually
+``requirements/documentation.txt``.  Click :guilabel:`Submit` to save your
 changes, and it should automatically try the build again (if it doesn't, click
 on :guilabel:`Build` from the project page.  You should now have a link to
 view the HTML documentation for the project.
