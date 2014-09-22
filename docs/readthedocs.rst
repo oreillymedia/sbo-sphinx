@@ -9,23 +9,58 @@ service for building and hosting Sphinx-based documentation.  The public web
 site only supports public code repositories, but a local installation can be
 set up to also pull from private repositories.  The site has fairly good
 `instructions <http://read-the-docs.readthedocs.org/en/latest/install.html>`_
-on how to set up a local installation, but here are a couple of points to note:
+on how to set up a local installation, but here are a few points to note:
 
 #. Create ``settings/local_settings.py`` - see
    http://read-the-docs.readthedocs.org/en/latest/settings.html for some
    noteworthy options.  You'll probably want to set at least the following::
 
-       SLUMBER_USERNAME = 'your_django_username'
-       SLUMBER_PASSWORD = 'your_django_password'
+      DATABASES = {
+           'default': {
+               'ENGINE': 'django.db.backends.postgresql_psycopg2',
+               'NAME': 'docs',
+               'USER': 'postgres',  # or database user of your choice
+               'PASSWORD': 'your_password_here',
+               'HOST': 'localhost',  # or other database host IP address
+               'PORT': '',
+           }
+       }
        ADMINS = (
            ('Your Name', 'your_username@safaribooksonline.com'),
        )
        ALLOW_PRIVATE_REPOS = True
+       CELERY_ALWAYS_EAGER = False
+
+   For a production documentation server, a few a additional settings should
+   probably be modified (PRODUCTION_DOMAIN, SLUMBER_PASSWORD, CACHE_BACKEND,
+   perhaps the PostgreSQL and/or redis host IP addresses, etc.)
+
+#. Create the database itself (``createdb -U postgres -h localhost -p 5432 -E utf8 -O postgres docs``,
+   change the arguments if necessary to match the database settings).
+
+#. Install the PostgreSQL driver for Python::
+
+   pip install psycopg2
+
+#. As of this writing, there's a minor bug in specifying the project's
+   database migration dependencies.  To work around this, run the database
+   setup commands in the following order::
+
+   ./manage.py syncdb
+   ./manage.py migrate projects
+   ./manage.py migrate
+
+#. Create a superuser account with the login credentials specified in
+   ``SLUMBER_USERNAME`` and ``SLUMBER_PASSWORD`` (test/test by default) via
+   ``./manage.py createsuperuser``.
 
 #. If you set the slumber username and password in ``local_settings.py``, you
    shouldn't need to run the ``./manage.py loaddata test_data`` command; other
    than creating a default user for building the documentation in background
    tasks, it just creates some sample documentation project records.
+
+#. Make sure that ``java`` and ``ant`` are installed (these are needed to build
+   API documentation for JavaScript code).
 
 Hence the overall sequence ends up looking something like this:
 
@@ -38,21 +73,14 @@ Hence the overall sequence ends up looking something like this:
     pip install -r pip_requirements.txt
     cd readthedocs
     # Create settings/local_settings.py
+    createdb -U postgres -h localhost -p 5432 -E utf8 -O postgres docs
+    pip install pyscopg2
     ./manage.py syncdb
+    ./manage.py migrate projects
     ./manage.py migrate
-    ./manage.py runserver
-
-In order to check out code from a private git repository, you'll need to
-configure the SSH credentials for the user running the app server.  There
-should be a certificate in ``~/.ssh`` with appropriate permissions, as well
-as a file at ``~/.ssh/config`` with content like the following::
-
-    Host github.com
-        User git
-        IdentityFile /Users/username/.ssh/id_rsa
-
-This config file must have the same permissions as the referenced identity
-file (read/write for the user, no permissions for anyone else).
+    ./manage.py createsuperuser
+    ./manage.py runserver  # in one terminal or as a daemon
+    ./manage.py celery worker  # in another terminal or as another daemon
 
 Project Creation
 ----------------
