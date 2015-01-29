@@ -40,15 +40,15 @@ on how to set up a local installation, but here are a few points to note:
 
 #. Install the PostgreSQL driver for Python::
 
-   pip install psycopg2
+      pip install psycopg2
 
 #. As of this writing, there's a minor bug in specifying the project's
    database migration dependencies.  To work around this, run the database
    setup commands in the following order::
 
-   ./manage.py syncdb
-   ./manage.py migrate projects
-   ./manage.py migrate
+      ./manage.py syncdb
+      ./manage.py migrate projects
+      ./manage.py migrate
 
 #. Create a superuser account with the login credentials specified in
    ``SLUMBER_USERNAME`` and ``SLUMBER_PASSWORD`` (test/test by default) via

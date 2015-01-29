@@ -10,6 +10,7 @@ Contents:
 
    readme
    readthedocs
+   CHANGELOG
    Python API <python/modules>
    JavaScript API for jsdoc-toolkit <javascript/index>
    JavaScript File Listing for jsdoc-toolkit <javascript/files>
