@@ -1,13 +1,23 @@
 # Core dependencies common to all Python interpreters
 
-# As a public package, version requirements are rather lax
-# The currently preferred versions are specified in tests.txt for testing
+# Python packaging utilities
+setuptools==11.0
 
 # Package manager, also used to parse this file in setup.py
-pip>=1.5
+pip==6.0.6
+
+# Indirect dependencies first, exact versions for consistency
+
+# Sphinx -> Jinja2
+MarkupSafe==0.23
+
+# Sphinx
+docutils==0.12
+Jinja2==2.7.3
+Pygments==2.0.2
 
 # Documentation generator
-Sphinx>=1.2.1
+Sphinx==1.2.3
 
 # Read the Docs Sphinx theme
-sphinx_rtd_theme>=0.1.5
+sphinx_rtd_theme==0.1.5

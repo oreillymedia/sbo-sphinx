@@ -1,4 +1,5 @@
 import os
+from pip.download import PipSession
 from pip.index import PackageFinder
 from pip.req import parse_requirements
 from setuptools import setup, find_packages
@@ -6,11 +7,12 @@ from setuptools import setup, find_packages
 root_dir = os.path.abspath(os.path.dirname(__file__))
 requirements_path = os.path.join(root_dir, 'requirements', 'base.txt')
 
-finder = PackageFinder([], [])
-requirements = parse_requirements(requirements_path, finder)
+session = PipSession()
+finder = PackageFinder([], [], session=session)
+requirements = parse_requirements(requirements_path, finder, session=session)
 install_requires = [r.name for r in requirements]
 
-version = '2.0.2'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '2.0.3'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 setup(
     name="sbo-sphinx",
