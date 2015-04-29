@@ -1,6 +1,12 @@
 sbo-sphinx Changelog
 ====================
 
+2.1.0 (2015-04-28)
+------------------
+* Switched Python & Django intersphinx links to HTTPS
+* Python 3 support
+* Assorted packaging cleanup
+
 2.0.3 (2015-01-29)
 ------------------
 Fixed compatibility with pip 6.x

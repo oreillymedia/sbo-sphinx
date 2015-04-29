@@ -7,6 +7,8 @@ The original file is at
 https://bitbucket.org/pypa/pypi/raw/ec1282bfe85c12c93005ca7271f56c9df5c9445e/description_utils.py
 """
 
+from __future__ import unicode_literals
+
 import sys
 import zipfile
 import tarfile
