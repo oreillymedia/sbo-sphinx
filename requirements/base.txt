@@ -8,6 +8,19 @@ pip==6.1.1
 
 # Indirect dependencies first, exact versions for consistency
 
+# readme -> bleach -> html5lib, Sphinx
+six==1.9.0
+
+# readme -> bleach
+html5lib==0.9999
+
+# readme
+bleach==1.4.1
+
+# readme, Sphinx
+docutils==0.12
+Pygments==2.0.2
+
 # Sphinx -> Babel
 pytz==2015.2
 
@@ -19,13 +32,13 @@ PyStemmer==1.3.0
 
 # Sphinx
 Babel==1.3
-docutils==0.12
 Jinja2==2.7.3
-Pygments==2.0.2
-six==1.9.0
 snowballstemmer==1.2.0
 
 # And now the direct dependencies
+
+# The README parser used by PyPI, used to validate README.rst
+readme==0.5.1
 
 # Documentation generator
 Sphinx==1.3.1

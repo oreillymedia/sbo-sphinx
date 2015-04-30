@@ -65,7 +65,6 @@ class TestOutput(TestCase):
             os.path.join('javascript', 'index.rst'),
             os.path.join('python', 'modules.rst'),
             os.path.join('python', 'sbo_sphinx.rst'),
-            os.path.join('python', 'validate_readme.rst'),
         ]
         for path in expected:
             assert os.path.exists(os.path.join(DOCS_DIR, path)), output

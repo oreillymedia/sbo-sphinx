@@ -1,3 +1,4 @@
+import codecs
 import os
 from pip.download import PipSession
 from pip.index import PackageFinder
@@ -19,6 +20,9 @@ if on_rtd:
     # Use specific versions instead
     install_requires = [str(r.req) for r in requirements]
 
+with codecs.open('README.rst', 'r', 'utf-8') as f:
+    long_description = f.read()
+
 setup(
     name="sbo-sphinx",
     version=version,
@@ -37,6 +41,7 @@ setup(
         'Topic :: Software Development :: Documentation',
     ],
     description="Sphinx configuration and libraries for Safari Books Online documentation",
+    long_description=long_description,
     url='http://github.com/safarijv/sbo-sphinx',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     package_data={
@@ -70,7 +75,6 @@ setup(
             'jsdoc-toolkit-rst-template/templates/rst/*.js',
         ],
     },
-    scripts=['validate_readme.py'],
     zip_safe=False,
     install_requires=install_requires,
 )
