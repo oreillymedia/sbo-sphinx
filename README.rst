@@ -67,12 +67,14 @@ PyPI Description Validation
 If PyPI encounters something it doesn't know how to handle in a reStructuredText
 package description, it just silently shows it as plain text instead of
 formatting it as expected.  To get some warning of this before uploading your
-package, use the ``validate_readme.py`` script which gets installed along with
-sbo-sphinx.  Basic usage is::
+package, install the ``readme`` package and run::
 
-    validate_readme.py README.rst
+    python setup.py check --restructuredtext --strict
 
-For more details, see the output of ``validate_readme.py -h``.
+Note that for this to work, long_description must be set in setup.py
+(usually by loading it from a README.rst file or such).  If you instead
+count on setting ``description-file`` in ``setup.cfg``, the reStructuredText
+that will be used for the PyPI page isn't available to the ``check`` command.
 
 Markdown
 --------
