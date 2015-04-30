@@ -277,9 +277,8 @@ epub_copyright = u'2014, Safari Books Online'
 
 # Example configuration for intersphinx
 intersphinx_mapping = {
-    'python': ('http://docs.python.org/2/', None),
-    'django': ('http://docs.djangoproject.com/en/1.6/', 'http://docs.djangoproject.com/en/1.6/_objects/'),
-    'nose': ('http://nose.readthedocs.org/en/latest/', None),
+    'python': ('https://docs.python.org/2/', None),
+    'django': ('https://docs.djangoproject.com/en/1.6/', 'http://docs.djangoproject.com/en/1.6/_objects/'),
     'sphinx': ('http://sphinx-doc.org/', None),
 }
 
@@ -293,7 +292,7 @@ def update_configuration(app):
     sys.path.insert(0, os.path.join(config_dir, '..'))
 
     config.html_theme_path.append(os.path.relpath(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'themes'), config_dir))
-    # Logo isn't actually shown in HTML output yet:
+    # Logo isn't actually shown in HTML output yet, should be fixed in sphinx_rtd_theme 0.1.8:
     # https://github.com/snide/sphinx_rtd_theme/pull/69
     if not config.html_logo:
         config.html_logo = os.path.relpath(os.path.join(STATIC_PATH, 'safari_logo.png'), config_dir)

@@ -2,12 +2,12 @@
 # Created by Jeremy Bowman at Thu Feb  6 17:41:45 2014
 # Copyright (c) 2014 Safari Books Online, LLC. All rights reserved.
 
+from __future__ import unicode_literals
+
 import os
 from shutil import rmtree
 from subprocess import PIPE, Popen, STDOUT
 from unittest import TestCase
-
-from nose.tools import assert_true
 
 DOCS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                         '..', '..', 'docs'))
@@ -32,7 +32,8 @@ class TestOutput(TestCase):
         process = Popen(['sphinx-build', '-b', 'html', '.', '_test'],
                         cwd=DOCS_DIR,
                         stderr=STDOUT,
-                        stdout=PIPE)
+                        stdout=PIPE,
+                        universal_newlines=True)
         output, _ = process.communicate()
         self._verify_intermediate_files(output)
         expected = [
@@ -47,7 +48,7 @@ class TestOutput(TestCase):
             'searchindex.js',
         ]
         for path in expected:
-            assert_true(os.path.exists(os.path.join(OUTPUT_DIR, path)), output)
+            assert os.path.exists(os.path.join(OUTPUT_DIR, path)), output
 
     def _clean(self):
         """Remove any generated output and intermediate files"""
@@ -64,7 +65,6 @@ class TestOutput(TestCase):
             os.path.join('javascript', 'index.rst'),
             os.path.join('python', 'modules.rst'),
             os.path.join('python', 'sbo_sphinx.rst'),
-            os.path.join('python', 'validate_readme.rst'),
         ]
         for path in expected:
-            assert_true(os.path.exists(os.path.join(DOCS_DIR, path)), output)
+            assert os.path.exists(os.path.join(DOCS_DIR, path)), output

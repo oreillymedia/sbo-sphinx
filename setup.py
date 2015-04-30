@@ -1,3 +1,4 @@
+import codecs
 import os
 from pip.download import PipSession
 from pip.index import PackageFinder
@@ -12,7 +13,15 @@ finder = PackageFinder([], [], session=session)
 requirements = parse_requirements(requirements_path, finder, session=session)
 install_requires = [r.name for r in requirements]
 
-version = '2.0.3'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '2.1.0'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+if on_rtd:
+    # Use specific versions instead
+    install_requires = [str(r.req) for r in requirements]
+
+with codecs.open('README.rst', 'r', 'utf-8') as f:
+    long_description = f.read()
 
 setup(
     name="sbo-sphinx",
@@ -26,12 +35,13 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
         'Operating System :: OS Independent',
-        'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
         'Topic :: Documentation',
         'Topic :: Software Development :: Documentation',
     ],
     description="Sphinx configuration and libraries for Safari Books Online documentation",
+    long_description=long_description,
     url='http://github.com/safarijv/sbo-sphinx',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     package_data={
@@ -65,7 +75,6 @@ setup(
             'jsdoc-toolkit-rst-template/templates/rst/*.js',
         ],
     },
-    scripts=['validate_readme.py'],
     zip_safe=False,
     install_requires=install_requires,
 )
