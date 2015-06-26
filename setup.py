@@ -13,7 +13,7 @@ finder = PackageFinder([], [], session=session)
 requirements = parse_requirements(requirements_path, finder, session=session)
 install_requires = [r.name for r in requirements]
 
-version = '2.1.0'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '2.1.1'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 if on_rtd:
@@ -44,37 +44,7 @@ setup(
     long_description=long_description,
     url='http://github.com/safarijv/sbo-sphinx',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-    package_data={
-        'sbo_sphinx': [
-            '_static/favicon.ico',
-            '_static/safari_logo.png',
-            'jsdoc-toolkit/*.jar',
-            'jsdoc-toolkit/*.sh',
-            'jsdoc-toolkit/*.txt',
-            'jsdoc-toolkit/app/*.js',
-            'jsdoc-toolkit/app/frame/*.js',
-            'jsdoc-toolkit/app/handlers/*.js',
-            'jsdoc-toolkit/app/handlers/XMLDOC/*.js',
-            'jsdoc-toolkit/app/lib/*.js',
-            'jsdoc-toolkit/app/lib/JSDOC/*.js',
-            'jsdoc-toolkit/app/plugins/*.js',
-            'jsdoc-toolkit/app/t/*.js',
-            'jsdoc-toolkit/app/test/*.js',
-            'jsdoc-toolkit/app/test/scripts/*.js',
-            'jsdoc-toolkit/app/test/scripts/*.txt',
-            'jsdoc-toolkit/conf/*.conf',
-            'jsdoc-toolkit/java/*.xml',
-            'jsdoc-toolkit/java/classes/*.jar',
-            'jsdoc-toolkit/java/src/*.java',
-            'jsdoc-toolkit/templates/jsdoc/*.tmpl',
-            'jsdoc-toolkit/templates/jsdoc/static/*.css',
-            'jsdoc-toolkit/templates/jsdoc/static/*.html',
-            'jsdoc-toolkit-rst-template/*.properties',
-            'jsdoc-toolkit-rst-template/*.xml',
-            'jsdoc-toolkit-rst-template/templates/rst/*.tmpl',
-            'jsdoc-toolkit-rst-template/templates/rst/*.js',
-        ],
-    },
+    include_package_data=True,
     zip_safe=False,
     install_requires=install_requires,
 )
