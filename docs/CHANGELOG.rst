@@ -1,6 +1,11 @@
 sbo-sphinx Changelog
 ====================
 
+2.1.1 (2015-06-26)
+------------------
+* Upgraded to a version of sphinx_rtd_theme in which html_logo works correctly
+* Assorted packaging cleanup
+
 2.1.0 (2015-04-28)
 ------------------
 * Removed validate_readme.py in favor of "python setup.py check --restructuredtext --strict"

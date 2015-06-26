@@ -96,18 +96,9 @@ are a few options:
 Read the Docs
 -------------
 sbo-sphinx was written to be mostly compatible with the
-`Read the Docs <https://readthedocs.org/>`_ service, but there are still a
-couple of gotchas:
-
-* The Read the Docs Sphinx theme `currently doesn't display <https://github.com/snide/sphinx_rtd_theme/pull/69>`_
-  an HTML logo specified in the configuration.  Additionally, setting an HTML
-  logo with Sphinx 1.2.1 generates a
-  `spurious warning <https://bitbucket.org/birkenfeld/sphinx/issue/1352/copying-html_logo-file-over-improperly>`_
-  in the build output.  Until at least the first bug is fixed, a logo can
-  really only be usefully specified for the LaTeX/PDF output.
-* Keep in mind that private source code repositories cannot be used on the
-  public Read the Docs service (but can be on a suitably configured private
-  installation).
+`Read the Docs <https://readthedocs.org/>`_ service, but keep in mind that
+private source code repositories cannot be used on the public Read the Docs
+service (but can be on a suitably configured private installation).
 
 Notes
 -----
