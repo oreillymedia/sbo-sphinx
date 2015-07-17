@@ -40,4 +40,5 @@ if virtual_env:
     os.system('requirements/clean_up_requirements.py')
     os.system("pip install --requirement requirements/base.txt")
     os.system("pip install --editable ./")
+    os.system("pip install --requirement requirements/tox.txt")
     os.system("pip install --requirement requirements/tests.txt")

@@ -1,10 +1,10 @@
 # Core dependencies common to all Python interpreters
 
 # Python packaging utilities
-setuptools==17.0
+setuptools==18.0.1
 
 # Package manager, also used to parse this file in setup.py
-pip==7.0.3
+pip==7.1.0
 
 # Indirect dependencies first, exact versions for consistency
 
@@ -12,7 +12,7 @@ pip==7.0.3
 six==1.9.0
 
 # readme -> bleach
-html5lib==0.99999
+html5lib==0.999999
 
 # readme
 bleach==1.4.1

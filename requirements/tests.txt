@@ -6,12 +6,12 @@
 gnureadline==6.3.3; sys_platform == 'darwin'
 
 # ipdb
-ipython==3.2.0
+ipython==3.2.1
 
 # pytest-cov -> cov-core
 coverage==3.7.1
 
-# pytest-cov -> pytest, tox
+# pytest-cov -> pytest
 py==1.4.30
 
 # pytest-catchlog, pytest-cov
@@ -19,10 +19,6 @@ pytest==2.7.2
 
 # pytest-cov
 cov-core==1.15.0
-
-# tox
-pluggy==0.3.0
-virtualenv==13.0.3
 
 # Direct dependencies for running tests
 
@@ -34,6 +30,3 @@ pytest-catchlog==1.1
 
 # For code coverage statistics generation
 pytest-cov==1.8.1
-
-# For managing test environments
-tox==2.1.1
