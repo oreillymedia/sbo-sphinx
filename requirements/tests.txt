@@ -29,4 +29,4 @@ ipdb==0.8.1
 pytest-catchlog==1.1
 
 # For code coverage statistics generation
-pytest-cov==1.8.1
+pytest-cov==2.0.0

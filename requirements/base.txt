@@ -31,8 +31,8 @@ MarkupSafe==0.23
 PyStemmer==1.3.0
 
 # Sphinx
-Babel==1.3
-Jinja2==2.7.3
+Babel==2.0
+Jinja2==2.8
 snowballstemmer==1.2.0
 
 # And now the direct dependencies
