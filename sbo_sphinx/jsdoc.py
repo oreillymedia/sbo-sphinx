@@ -30,7 +30,13 @@ import os
 from shutil import rmtree
 from subprocess import Popen
 
+from sphinx.errors import SphinxError
+
 SOURCE_PATH = os.path.abspath(os.path.dirname(__file__))
+
+
+class JSDocError(SphinxError):
+    category = 'jsdoc'
 
 
 def generate_docs(app):
@@ -61,8 +67,11 @@ def generate_docs(app):
     if exclude:
         exclude_args = ['--exclude=\\"%s\\"' % path for path in exclude]
         command.append('-Djs.exclude="%s"' % ' '.join(exclude_args))
-    process = Popen(command, cwd=execution_dir)
-    process.wait()
+    try:
+        process = Popen(command, cwd=execution_dir)
+        process.wait()
+    except OSError:
+        raise JSDocError('Error running ant; is it installed?')
 
     # Convert the absolute paths in the file listing to relative ones
     path = os.path.join(output_root, 'files.rst')
