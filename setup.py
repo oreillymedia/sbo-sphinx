@@ -13,12 +13,7 @@ finder = PackageFinder([], [], session=session)
 requirements = parse_requirements(requirements_path, finder, session=session)
 install_requires = [r.name for r in requirements]
 
-version = '2.1.1'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
-
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
-if on_rtd:
-    # Use specific versions instead
-    install_requires = [str(r.req) for r in requirements]
+version = '2.2.0'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 with codecs.open('README.rst', 'r', 'utf-8') as f:
     long_description = f.read()

@@ -4,7 +4,7 @@ sbo-sphinx README
 Overview
 --------
 
-Safari Books Online technical documentation is now being written and collected
+Safari technical documentation is now being written and collected
 in a form that can be processed by `Sphinx <http://sphinx-doc.org/>`_, a utility
 for generating documentation in HTML, PDF, Epub, and other formats from text
 files using reST (reStructuredText) wiki markup.  In addition to writing docs

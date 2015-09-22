@@ -3,7 +3,7 @@
 # Indirect dependencies first, exact versions for consistency
 
 # ipdb -> ipython -> pickleshare
-path.py==8.1
+path.py==8.1.1
 
 # ipdb -> ipython -> traitlets
 decorator==4.0.2
@@ -21,13 +21,13 @@ traitlets==4.0.0
 ipython==4.0.0
 
 # pytest-cov -> cov-core
-coverage==3.7.1
+coverage==4.0
 
 # pytest-cov -> pytest
 py==1.4.30
 
 # pytest-catchlog, pytest-cov
-pytest==2.7.2
+pytest==2.8.0
 
 # pytest-cov
 cov-core==1.15.0
