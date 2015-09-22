@@ -301,8 +301,8 @@ epub_cover = ('_static/safari_cover.png', 'epub-cover.html')
 #epub_theme = 'epub'
 
 epub_theme_options = {
-    'relbar1': False,
-    'footer': False,
+    'relbar1': False,  # omit the nav links header block in the epub output
+    'footer': False,  # omit the copyright footer block in the epub output
 }
 
 # The language of the text. It defaults to the language option
@@ -380,7 +380,7 @@ def update_configuration(app):
         config.html_favicon = os.path.relpath(os.path.join(STATIC_PATH, 'favicon.ico'), config_dir)
     config.html_static_path.append(os.path.relpath(STATIC_PATH, config_dir))
     if not config.htmlhelp_basename:
-        config.htmlhelp_basename = '{}doc'.format(project)
+        config.htmlhelp_basename = '%sdoc' % project
     if not config.latex_logo:
         config.latex_logo = os.path.relpath(os.path.join(STATIC_PATH, 'safari_logo.png'), config_dir)
     if not config.epub_title:
