@@ -11,6 +11,7 @@ docs/javascript
 docs/python
 _build
 egg-cache
+.cache
 .coverage
 .DS_Store
 .idea
