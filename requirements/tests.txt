@@ -3,10 +3,10 @@
 # Indirect dependencies first, exact versions for consistency
 
 # ipdb -> ipython -> pickleshare
-path.py==8.1.1
+path.py==8.1.2
 
 # ipdb -> ipython -> traitlets
-decorator==4.0.2
+decorator==4.0.4
 ipython-genutils==0.1.0
 
 # ipdb -> ipython
@@ -21,13 +21,13 @@ traitlets==4.0.0
 ipython==4.0.0
 
 # pytest-cov -> cov-core
-coverage==4.0
+coverage==4.0.1
 
 # pytest-cov -> pytest
 py==1.4.30
 
 # pytest-catchlog, pytest-cov
-pytest==2.8.0
+pytest==2.8.2
 
 # pytest-cov
 cov-core==1.15.0
@@ -41,4 +41,4 @@ ipdb==0.8.1
 pytest-catchlog==1.1
 
 # For code coverage statistics generation
-pytest-cov==2.1.0
+pytest-cov==2.2.0
