@@ -6,28 +6,28 @@
 path.py==8.1.2
 
 # ipdb -> ipython -> traitlets
-decorator==4.0.4
+decorator==4.0.6
 ipython-genutils==0.1.0
 
 # ipdb -> ipython
 appnope==0.1.0; sys_platform == 'darwin'
 gnureadline==6.3.3; sys_platform == 'darwin'
 pexpect==3.3; sys_platform != 'win32'
-pickleshare==0.5
+pickleshare==0.6
 simplegeneric==0.8.1
-traitlets==4.0.0
+traitlets==4.1.0
 
 # ipdb
-ipython==4.0.0
+ipython==4.0.3
 
 # pytest-cov -> cov-core
-coverage==4.0.1
+coverage==4.0.3
 
 # pytest-cov -> pytest
-py==1.4.30
+py==1.4.31
 
 # pytest-catchlog, pytest-cov
-pytest==2.8.2
+pytest==2.8.7
 
 # pytest-cov
 cov-core==1.15.0
@@ -38,7 +38,7 @@ cov-core==1.15.0
 ipdb==0.8.1
 
 # Show log output for test failures
-pytest-catchlog==1.1
+pytest-catchlog==1.2.2
 
 # For code coverage statistics generation
 pytest-cov==2.2.0
