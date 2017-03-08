@@ -1,3 +1,6 @@
 # Packages which were once dependencies, but should now be removed if present.
 
+cov-core
+gnureadline
 nose
+pytest-cov

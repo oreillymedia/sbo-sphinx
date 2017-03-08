@@ -6,8 +6,15 @@ from __future__ import unicode_literals
 
 import os
 from shutil import rmtree
-from subprocess import PIPE, Popen, STDOUT
 from unittest import TestCase
+
+import six
+import sphinx
+
+try:
+    from contextlib import redirect_stdout
+except ImportError:
+    from contextlib2 import redirect_stdout
 
 DOCS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                         '..', '..', 'docs'))
@@ -29,12 +36,11 @@ class TestOutput(TestCase):
 
     def test_html(self):
         """The HTML output should build correctly"""
-        process = Popen(['sphinx-build', '-b', 'html', '.', '_test'],
-                        cwd=DOCS_DIR,
-                        stderr=STDOUT,
-                        stdout=PIPE,
-                        universal_newlines=True)
-        output, _ = process.communicate()
+        output_stream = six.moves.cStringIO()
+        with redirect_stdout(output_stream):
+            exit_code = sphinx.build_main(['sphinx-build', '-b', 'html', DOCS_DIR, OUTPUT_DIR])
+        assert exit_code == 0
+        output = six.text_type(output_stream.getvalue())
         self._verify_intermediate_files(output)
         expected = [
             os.path.join('_static', 'favicon.ico'),

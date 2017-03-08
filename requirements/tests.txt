@@ -2,43 +2,43 @@
 
 # Indirect dependencies first, exact versions for consistency
 
-# ipdb -> ipython -> pickleshare
-path.py==8.1.2
+# ipdb -> ipython -> pexpect
+ptyprocess==0.5.1; sys_platform != 'win32'
+
+# ipdb -> ipython -> prompt_toolkit
+wcwidth==0.1.7
 
 # ipdb -> ipython -> traitlets
-decorator==4.0.9
+decorator==4.0.11
 ipython-genutils==0.1.0
 
 # ipdb -> ipython
 appnope==0.1.0; sys_platform == 'darwin'
-gnureadline==6.3.3; sys_platform == 'darwin'
-pexpect==4.0.1; sys_platform != 'win32'
-pickleshare==0.6
+pexpect==4.2.1; sys_platform != 'win32'
+pickleshare==0.7.4
+prompt_toolkit==1.0.13
 simplegeneric==0.8.1
-traitlets==4.1.0
+traitlets==4.3.2
 
 # ipdb
-ipython==4.1.2
-
-# pytest-cov -> cov-core
-coverage==4.0.3
+ipython==5.3.0
 
 # pytest-cov -> pytest
-py==1.4.31
+py==1.4.32
 
 # pytest-catchlog, pytest-cov
-pytest==2.9.0
-
-# pytest-cov
-cov-core==1.15.0
+pytest==3.0.6
 
 # Direct dependencies for running tests
 
+# Includes a backport of redirect_stdout for Python 2
+contextlib2==0.5.4; python_version < '3.4'
+
 # A better debugger
-ipdb==0.9.0
+ipdb==0.10.2
 
 # Show log output for test failures
 pytest-catchlog==1.2.2
 
 # For code coverage statistics generation
-pytest-cov==2.2.1
+coverage==4.3.4

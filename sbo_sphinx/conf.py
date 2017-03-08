@@ -360,7 +360,7 @@ epub_show_urls = 'no'
 # Example configuration for intersphinx
 intersphinx_mapping = {
     'python': ('https://docs.python.org/2/', None),
-    'django': ('https://docs.djangoproject.com/en/1.6/', 'http://docs.djangoproject.com/en/1.6/_objects/'),
+    'django': ('https://docs.djangoproject.com/en/1.10/', 'https://docs.djangoproject.com/en/1.10/_objects/'),
     'sphinx': ('http://sphinx-doc.org/', None),
 }
 

@@ -13,7 +13,7 @@ finder = PackageFinder([], [], session=session)
 requirements = parse_requirements(requirements_path, finder, session=session)
 install_requires = [r.name for r in requirements]
 
-version = '2.2.0'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '2.2.1'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 with codecs.open('README.rst', 'r', 'utf-8') as f:
     long_description = f.read()
@@ -33,6 +33,8 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Documentation',
         'Topic :: Software Development :: Documentation',
     ],

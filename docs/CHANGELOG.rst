@@ -1,6 +1,13 @@
 sbo-sphinx Changelog
 ====================
 
+2.2.1 (2017-03-08)
+------------------
+* Fixed ``jsdoc_exclude`` under Python 3
+* Updated the default intersphinx link to Django documentation (from 1.6 to 1.10)
+* Verified support for Python 3.6
+* More accurate test coverage reporting
+
 2.2.0 (2015-09-22)
 ------------------
 * Cleaner EPUB output by default, including a default cover

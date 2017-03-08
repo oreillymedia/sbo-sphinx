@@ -1,54 +1,64 @@
-# Core dependencies common to all Python interpreters
-
-# Python packaging utilities
-setuptools==20.2.2
-
-# Package manager, also used to parse this file in setup.py
-pip==8.0.3
-
 # Indirect dependencies first, exact versions for consistency
+
+# pip -> setuptools -> packaging
+pyparsing==2.2.0
+
+# pip -> setuptools
+appdirs==1.4.3
+packaging==16.8
+six==1.10.0
+
+# pip
+setuptools==34.3.1
 
 # readme_renderer -> bleach -> html5lib, Sphinx
 six==1.10.0
+
+# readme_renderer -> bleach -> html5lib
+webencodings==0.5
 
 # readme_renderer -> bleach
 html5lib==0.9999999
 
 # readme_renderer
-bleach==1.4.2
+bleach==1.5.0
 
 # readme_renderer, Sphinx
-docutils==0.12
-Pygments==2.1.3
+docutils==0.13.1
+Pygments==2.2.0
 
 # recommonmark
 CommonMark==0.5.4
 
 # Sphinx -> Babel
-pytz==2015.7
+pytz==2016.10
 
 # Sphinx -> Jinja2
-MarkupSafe==0.23
+MarkupSafe==1.0
 
 # Sphinx -> snowballstemmer; optional dependency for better performance
 PyStemmer==1.3.0
 
 # Sphinx
-Babel==2.2.0
-Jinja2==2.8
+Babel==2.3.4
+imagesize==0.7.1
+Jinja2==2.9.5
 snowballstemmer==1.2.1
 
 # And now the direct dependencies
 
+# Package manager
+pip==9.0.1
+
 # The README parser used by PyPI, used to validate README.rst
-readme_renderer==0.7.0
+readme_renderer==16.0
 
 # A docutils extension to support parsing CommonMark-flavored Markdown
 recommonmark==0.4.0
 
 # Documentation generator
-Sphinx==1.3.6
+Sphinx==1.5.3
 
 # Sphinx themes (circular dependencies of Sphinx)
-alabaster==0.7.7
-sphinx_rtd_theme==0.1.9
+alabaster==0.7.10
+sphinx_rtd_theme==0.2.4
