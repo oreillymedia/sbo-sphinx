@@ -1,3 +1,8 @@
+[report]
+show_missing = true
+
 [run]
+branch = True
+source = sbo_sphinx
 omit =
     */tests/*

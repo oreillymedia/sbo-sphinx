@@ -26,6 +26,8 @@ intermediate files aren't accidentally committed.
 External requirements: java, ant
 """
 
+from __future__ import unicode_literals
+
 import os
 from shutil import rmtree
 from subprocess import Popen
@@ -65,7 +67,7 @@ def generate_docs(app):
                '-Djs.src.dir=%s' % javascript_root,
                '-Djs.rst.dir=%s' % output_root]
     if exclude:
-        exclude_args = ['--exclude=\\"%s\\"' % path for path in exclude]
+        exclude_args = ['--exclude=\"%s\"' % path for path in exclude]
         command.append('-Djs.exclude="%s"' % ' '.join(exclude_args))
     try:
         process = Popen(command, cwd=execution_dir)
