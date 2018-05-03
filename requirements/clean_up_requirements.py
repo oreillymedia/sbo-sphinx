@@ -17,10 +17,16 @@ import codecs
 import os
 import re
 
-from pip.download import PipSession
-from pip.exceptions import UninstallationError
-from pip.index import PackageFinder
-from pip.req import parse_requirements
+try:  # for pip >= 10
+    from pip._internal.exceptions import UninstallationError
+    from pip._internal.req import parse_requirements
+    from pip._internal.download import PipSession
+    from pip._internal.index import PackageFinder
+except ImportError:  # for pip <= 9.0.3
+    from pip.exceptions import UninstallationError
+    from pip.download import PipSession
+    from pip.index import PackageFinder
+    from pip.req import parse_requirements
 
 
 if __name__ == '__main__':

@@ -1,9 +1,14 @@
 import codecs
 import os
-from pip.download import PipSession
-from pip.index import PackageFinder
-from pip.req import parse_requirements
-from setuptools import setup, find_packages
+try:  # for pip >= 10
+    from pip._internal.req import parse_requirements
+    from pip._internal.download import PipSession
+    from pip._internal.index import PackageFinder
+except ImportError:  # for pip <= 9.0.3
+    from pip.download import PipSession
+    from pip.index import PackageFinder
+    from pip.req import parse_requirements
+from setuptools import find_packages, setup
 
 root_dir = os.path.abspath(os.path.dirname(__file__))
 requirements_path = os.path.join(root_dir, 'requirements', 'base.txt')
@@ -13,7 +18,7 @@ finder = PackageFinder([], [], session=session)
 requirements = parse_requirements(requirements_path, finder, session=session)
 install_requires = [r.name for r in requirements]
 
-version = '2.2.0'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
+version = '2.2.1'  # Don't forget to update docs/CHANGELOG.rst if you increment the version
 
 with codecs.open('README.rst', 'r', 'utf-8') as f:
     long_description = f.read()

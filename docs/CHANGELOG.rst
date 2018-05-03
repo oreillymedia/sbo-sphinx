@@ -1,6 +1,10 @@
 sbo-sphinx Changelog
 ====================
 
+2.2.1 (2018-05-03)
+------------------
+* Pip 10 compatibility
+
 2.2.0 (2015-09-22)
 ------------------
 * Cleaner EPUB output by default, including a default cover
