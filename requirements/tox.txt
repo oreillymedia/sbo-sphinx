@@ -2,9 +2,9 @@
 # Installed by Jenkins and dev environments.
 
 # tox dependencies
-pluggy==0.3.1
-py==1.4.31
-virtualenv==14.0.6
+pluggy==0.6.0
+py==1.5.3
+virtualenv==15.2.0
 
 # For managing test environments
-tox==2.3.1
+tox==3.0.0
