@@ -3,9 +3,6 @@
 # Python packaging utilities
 setuptools==39.1.0
 
-# Package manager, also used to parse this file in setup.py
-pip==10.0.1
-
 # Indirect dependencies first, exact versions for consistency
 
 # readme_renderer -> bleach -> html5lib, Sphinx
